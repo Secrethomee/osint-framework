@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Framework</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #ff9800;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .links {
+            list-style: none;
+            padding: 0;
+        }
+        .links li {
+            margin: 10px 0;
+        }
+        a {
+            color: #00bcd4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>OSINT Framework</h1>
+    <div id="content"></div>
+    <script>
+        const osintData = {
+            "Username Check": {
+                "Username Search Engines": [
+                    "https://namechk.com",
+                    "https://knowem.com",
+                    "https://checkusernames.com",
+                    "https://whatsmyname.app",
+                    "https://namecheckup.com",
+                    "https://usersearch.org",
+                    "https://instantusername.com",
+                    "https://usersherlock.com"
+                ],
+                "Gaming Platforms": [
+                    "https://steamid.uk",
+                    "https://xboxgamertag.com",
+                    "https://psnprofiles.com"
+                ]
+            },
+            "Public Records": {
+                "General Record Search": [
+                    "https://searchsystems.net",
+                    "https://brbpublications.com",
+                    "https://blackbookonline.info",
+                    "https://publicrecords.searchsystems.net"
+                ],
+                "Vital Records": [
+                    "https://vitalrec.com",
+                    "https://cdc.gov/nchs/w2w/index.htm"
+                ]
+            }
+        };
+
+        const contentDiv = document.getElementById("content");
+        
+        for (const category in osintData) {
+            let section = document.createElement("div");
+            section.classList.add("section");
+            
+            let title = document.createElement("h2");
+            title.textContent = category;
+            section.appendChild(title);
+            
+            for (const subcategory in osintData[category]) {
+                let subtitle = document.createElement("h3");
+                subtitle.textContent = subcategory;
+                section.appendChild(subtitle);
+                
+                let list = document.createElement("ul");
+                list.classList.add("links");
+                
+                osintData[category][subcategory].forEach(link => {
+                    let listItem = document.createElement("li");
+                    let anchor = document.createElement("a");
+                    anchor.href = link;
+                    anchor.textContent = link;
+                    anchor.target = "_blank";
+                    listItem.appendChild(anchor);
+                    list.appendChild(listItem);
+                });
+                
+                section.appendChild(list);
+            }
+            contentDiv.appendChild(section);
+        }
+    </script>
+</body>
+</html>
